@@ -11,7 +11,7 @@ const divide = (a, b) => {
     return a / b;
 };
 
-const calculator = (a, unknown, b) => {
+const calculate = (a, unknown, b) => {
     if (unknown === "+") {
         return add(a, b);
     } else if (unknown === "-") {
@@ -25,9 +25,42 @@ const calculator = (a, unknown, b) => {
     }
 };
 
-console.log("足し算:9 + 3 =", calculator(9, "+", 3));
-console.log("引き算:9 - 3 =", calculator(9, "-", 3));
-console.log("掛け算:9 × 3 =", calculator(9, "*", 3));
-console.log("割り算:9 ÷ 3 =", calculator(9, "/", 3));
+console.log("足し算:9 + 3 =", calculate(9, "+", 3));
+console.log("引き算:9 - 3 =", calculate(9, "-", 3));
+console.log("掛け算:9 × 3 =", calculate(9, "*", 3));
+console.log("割り算:9 ÷ 3 =", calculate(9, "/", 3));
 
-console.log("エラー:9 @ 3 =", calculator(9, "@", 3));
+console.log("エラー:9 @ 3 =", calculate(9, "@", 3));
+
+const loops = [
+    {
+        a: 3,
+        unknown: "-",
+        b: 2,
+    },
+    {
+        a: 5,
+        unknown: "*",
+        b: 10,
+    },
+    {
+        a: 3,
+        unknown: "/",
+        b: 2,
+    },
+    {
+        a: 3,
+        unknown: "%",
+        b: 2,
+    },
+    {
+        a: 3,
+        unknown: "+",
+        b: 2,
+    },
+];
+
+for (const loop of loops) {
+    const result = calculate(loop.a, loop.unknown, loop.b);
+    console.log(`${loop.a} ${loop.unknown} ${loop.b} = ${result}`);
+}
