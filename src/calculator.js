@@ -64,3 +64,36 @@ for (const loop of loops) {
     const result = calculate(loop.a, loop.unknown, loop.b);
     console.log(`${loop.a} ${loop.unknown} ${loop.b} = ${result}`);
 }
+
+const history = [];
+
+const calculatorWithHistory = (a, unknown, b) => {
+    const result = calculate(a, unknown, b);
+    const record = {
+        expression: `${a} ${unknown} ${b}`,
+        result: result,
+        timestamp: new Date().toLocaleString("ja-JP"),
+    };
+    history.push(record);
+    return result;
+};
+
+const showHistory = () => {
+    console.log("=== 計算履歴 ===");
+    if (history.length === 0) {
+        console.log("履歴がありません");
+        return;
+    }
+    for (let i = 0; i < history.length; i++) {
+        const record = history[i];
+        console.log(
+            `${i + 1}. ${record.expression} = ${record.result} (${record.timestamp})`,
+        );
+    }
+};
+
+calculatorWithHistory(100, "+", 200);
+calculatorWithHistory(150, "-", 100);
+calculatorWithHistory(100, "*", 200);
+
+showHistory();
