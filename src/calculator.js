@@ -92,6 +92,8 @@ const showHistory = () => {
     }
 };
 
+showHistory();
+
 calculatorWithHistory(100, "+", 200);
 calculatorWithHistory(150, "-", 100);
 calculatorWithHistory(100, "*", 200);
