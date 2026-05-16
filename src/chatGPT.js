@@ -78,8 +78,44 @@ if (names.includes("田中")) {
 }
 
 // ========第三段階========
-const user = [
-    {
-        name: "自分",
-    },
+const user = {
+    name: "自分",
+    age: 30,
+    job: "teacher",
+};
+console.log(user.name);
+
+const product = {
+    name: "新商品",
+    price: 2500,
+    inStock: false,
+};
+if (product.inStock === true) {
+    console.log("在庫あり");
+} else {
+    console.log("在庫なし");
+}
+
+const users = [
+    { name: "田中", age: 17 },
+    { name: "佐藤", age: 22 },
+    { name: "鈴木", age: 19 },
 ];
+for (const user of users) {
+    if (user.age >= 18) {
+        console.log(user);
+    }
+}
+
+const items = [
+    { name: "PC", price: 35000 },
+    { name: "iphone", price: 2900 },
+    { name: "洗濯機", price: 500 },
+    { name: "テレビ", price: 55000 },
+    { name: "ぬいぐるみ", price: 3000 },
+];
+for (const item of items) {
+    if (item.price >= 3000) {
+        console.log(item.name);
+    }
+}
