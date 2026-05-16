@@ -119,3 +119,50 @@ for (const item of items) {
         console.log(item.name);
     }
 }
+
+// ========第四段階========
+let todos = [
+    { id: 1, text: "買い物", completed: false },
+    { id: 2, text: "掃除", completed: true },
+    { id: 3, text: "勉強", completed: false },
+];
+for (const todo of todos) {
+    if (!todo.completed) {
+        console.log(todo.text);
+    }
+}
+function getIncompleteTodos(todoList) {
+    return todoList.filter((todo) => !todo.completed);
+}
+console.log(getIncompleteTodos(todos));
+
+function completeTodo(todoList, todoId) {
+    return todoList.map((todo) => {
+        if (todo.id === todoId) {
+            return { ...todo, completed: true };
+        }
+        return todo;
+    });
+}
+todos = completeTodo(todos, 3);
+console.log(todos);
+
+const products = [
+    { id: 1, name: "ノート", price: 200 },
+    { id: 2, name: "ペン", price: 100 },
+    { id: 3, name: "消しゴム", price: 80 },
+];
+for (const product of products) {
+    console.log(product.name);
+}
+
+const students = [
+    { name: "田中", score: 80 },
+    { name: "佐藤", score: 70 },
+    { name: "鈴木", score: 90 },
+];
+let sumScore = 0;
+for (const student of students) {
+    sumScore += student.score;
+}
+console.log(sumScore / students.length);
