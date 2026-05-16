@@ -1,5 +1,4 @@
-// 第一段階
-
+// ========第一段階========
 const name = "自分の名前";
 console.log(`こんにちは、${name}さん`);
 
@@ -40,3 +39,47 @@ function isAdult(age) {
     }
 }
 console.log(isAdult(17));
+
+// ========第二段階========
+const fruits = ["apple", "banana", "orange"];
+for (const fruit of fruits) {
+    console.log(fruit);
+}
+
+const numbers = [10, 20, 30, 40, 50];
+let total = 0;
+for (const number of numbers) {
+    total += number;
+}
+console.log(total);
+
+const scores = [55, 80, 72, 90, 48];
+for (const score of scores) {
+    if (score >= 80) {
+        console.log(score);
+    }
+}
+
+const prices = [100, 200, 300];
+const newPrices = [];
+for (const price of prices) {
+    newPrices.push(price * 2);
+}
+for (const price of newPrices) {
+    console.log(price);
+}
+console.log(newPrices);
+
+const names = ["田中", "佐藤", "鈴木"];
+if (names.includes("田中")) {
+    console.log("入っています");
+} else {
+    console.log("入っていません");
+}
+
+// ========第三段階========
+const user = [
+    {
+        name: "自分",
+    },
+];
