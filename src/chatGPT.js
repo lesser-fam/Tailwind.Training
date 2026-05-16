@@ -166,3 +166,54 @@ for (const student of students) {
     sumScore += student.score;
 }
 console.log(sumScore / students.length);
+
+// ========第五段階========
+const hello = document.getElementById("hello");
+hello.textContent = "こんにちは、JavaScript";
+
+const button = document.getElementById("my-button");
+button.addEventListener("click", function () {
+    alert("ボタンが押されました");
+});
+
+const addText = document.getElementById("welcome");
+addText.textContent = "ようこそ";
+
+const target = document.getElementById("target");
+const color = document.getElementById("color");
+color.addEventListener("click", function () {
+    target.style.color = "red";
+});
+
+const back = document.getElementById("back");
+back.addEventListener("click", function () {
+    target.style.backgroundColor = "purple";
+});
+
+const input = document.getElementById("input");
+const helloButton = document.getElementById("hello-bt");
+const view = document.getElementById("view");
+helloButton.addEventListener("click", function () {
+    view.textContent = `こんにちは、${input.value}さん`;
+});
+
+const todoInput = document.getElementById("input-todo");
+const todoButton = document.getElementById("button-todo");
+const todoList = document.getElementById("list-todo");
+todoButton.addEventListener("click", function () {
+    const text = todoInput.value;
+
+    if (text !== "") {
+        const li = document.createElement("li");
+        li.textContent = text;
+
+        li.classList.add("cursor-pointer");
+
+        li.addEventListener("click", function () {
+            li.classList.toggle("bg-green-500");
+        });
+
+        todoList.appendChild(li);
+        todoInput.value = "";
+    }
+});
