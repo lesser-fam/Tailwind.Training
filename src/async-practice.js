@@ -68,56 +68,89 @@
 //     });
 
 // Promiseチェーンを使った連続処理
+// function getUser(userId) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve({ id: userId, name: "山田太郎" });
+//         }, 500);
+//     });
+// }
+
+// function getPosts(userId) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve([
+//                 { id: 1, userId: userId, title: "最初の投稿" },
+//                 { id: 2, userId: userId, title: "2番目の投稿" },
+//             ]);
+//         }, 500);
+//     });
+// }
+
+// function getComments(postId) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve([
+//                 { id: 1, postId: postId, text: "素晴らしい記事です！" },
+//                 { id: 2, postId: postId, text: "参考になりました" },
+//             ]);
+//         }, 500);
+//     });
+// }
+
+// console.log("処理開始");
+
+// getUser(1)
+//     .then((user) => {
+//         console.log("ユーザー取得:", user.name);
+//         return getPosts(user.id);
+//     })
+//     .then((posts) => {
+//         console.log("投稿取得:", posts.length, "件");
+//         return getComments(posts[0].id);
+//     })
+//     .then((comments) => {
+//         console.log("コメント取得:", comments.length, "件");
+//         comments.forEach((comment) => {
+//             console.log(`  - ${comment.text}`);
+//         });
+//     })
+//     .catch((error) => {
+//         console.error("エラー:", error);
+//     })
+//     .finally(() => {
+//         console.log("処理完了");
+//     });
+
+// Promise.allを使った並列処理
 function getUser(userId) {
     return new Promise((resolve) => {
+        const names = ["田中", "佐藤", "渡辺", "高橋", "鈴木"];
         setTimeout(() => {
-            resolve({ id: userId, name: "山田太郎" });
-        }, 500);
+            resolve({
+                id: userId,
+                name: names[userId - 1] || `ユーザー${userId}`,
+            });
+        }, Math.random() * 1000);
     });
 }
+const userPromises = [
+    getUser(1),
+    getUser(2),
+    getUser(3),
+    getUser(4),
+    getUser(5),
+];
 
-function getPosts(userId) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve([
-                { id: 1, userId: userId, title: "最初の投稿" },
-                { id: 2, userId: userId, title: "2番目の投稿" },
-            ]);
-        }, 500);
-    });
-}
+console.log("全ユーザーを取得中...");
 
-function getComments(postId) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve([
-                { id: 1, postId: postId, text: "素晴らしい記事です！" },
-                { id: 2, postId: postId, text: "参考になりました" },
-            ]);
-        }, 500);
-    });
-}
-
-console.log("処理開始");
-
-getUser(1)
-    .then((user) => {
-        console.log("ユーザー取得:", user.name);
-        return getPosts(user.id);
-    })
-    .then((posts) => {
-        console.log("投稿取得:", posts.length, "件");
-        return getComments(posts[0].id);
-    })
-    .then((comments) => {
-        console.log("コメント取得:", comments.length, "件");
-        comments.forEach((comment) => {
-            console.log(`  - ${comment.text}`);
+Promise.all(userPromises)
+    .then((users) => {
+        console.log("取得完了！");
+        users.forEach((user) => {
+            console.log(` ID:${user.id},名前:${user.name}`);
         });
     })
     .catch((error) => {
         console.error("エラー:", error);
-    })
-    .finally(() => {
-        console.log("処理完了");
     });
