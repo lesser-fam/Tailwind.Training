@@ -3,30 +3,72 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>State Management Example</title>
+        <!-- <link rel="stylesheet" href="blogPost.css" /> -->
+        <title>Blog Posts with State Handling</title>
         <style>
             #loading,
             #error,
             #empty {
                 display: none;
             }
+
+            #error {
+                color: red;
+            }
         </style>
     </head>
     <body>
-        <h1>User List</h1>
+        <!-- <div>
+            <h1>JavaScript 計算機</h1>
+            <script src="calculator.js"></script>
+        </div> -->
+        <!-- <div>
+            <h2>JavaScript ToDoリスト</h2>
+            <script src="ToDo.js"></script>
+        </div> -->
+        <!-- <div>
+            <h3>ToDo List</h3>
+            <input type="text" id="todo-input" placeholder="新しいToDoを入力" />
+            <button id="add-button">追加</button>
+            <ul id="todo-list"></ul>
 
-        <!-- データ表示エリア -->
-        <ul id="user-list"></ul>
+            <script src="app.js"></script>
+        </div> -->
 
-        <!-- ローディング表示 -->
-        <div id="loading">データを読み込み中です...</div>
+        <!-- chatGPT練習問題 -->
+        <!-- <h2>練習問題</h2>
+        <p id="hello">はじめてのJavascript</p>
 
-        <!-- エラー表示 -->
-        <div id="error">エラーが発生しました。</div>
+        <button id="my-button">ボタン</button>
 
-        <!-- データが空の場合の表示 -->
-        <div id="empty">ユーザーデータが見つかりません。</div>
+        <div id="welcome"></div>
 
+        <div id="target">色が変わる方</div>
+        <button id="color">色変更</button>
+        <button id="back">背景色</button>
+
+        <input id="input" type="text" />
+        <button id="hello-bt">hello</button>
+        <div id="view"></div>
+
+        <input id="input-todo" type="text" />
+        <button id="button-todo">todo追加</button>
+        <ul id="list-todo"></ul>
+
+        <script src="chatGPT.js"></script> -->
+
+        <!-- <h1>非同期処理の練習</h1>
+        <div id="output"></div>
+        <script src="async-practice.js"></script> -->
+
+        <h1>Blog Posts</h1>
+
+        <div id="posts-container"></div>
+        <div id="loading">読み込み中...</div>
+        <div id="error">
+            エラーが発生しました。時間をおいて再読み込みしてください。
+        </div>
+        <div id="empty">投稿がありません。</div>
         <script src="app.js"></script>
     </body>
 </html>
