@@ -1,47 +1,59 @@
-// const todoInput = document.querySelector("#todo-input");
-// const addButton = document.querySelector("#add-button");
-// const todoList = document.querySelector("#todo-list");
+// =============================================
+// ========  5-3-3 loading/error/empty  ========
+// =============================================
 
-// const { Document } = require("postcss");
-// const { doc } = require("prettier");
+// 各UI要素を取得
+const userList = document.querySelector("#user-list");
+const loading = document.querySelector("#loading");
+const error = document.querySelector("#error");
+const empty = document.querySelector("#empty");
 
-// ボタンがクリックされたらhandleClick関数を実行
-// addButton.addEventListener("click", function () {
-//     const todoText = todoInput.value;
-
-//     if (todoText === "") return;
-
-//     const newTodoItem = document.createElement("li");
-
-//     newTodoItem.textContent = todoText;
-
-//     todoList.appendChild(newTodoItem);
-
-//     todoInput.value = "";
-// });
-
-// 5-2-4:実践
-async function fetchPosts() {
-    const postList = document.querySelector("#posts-container");
-
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const posts = await response.json();
-
-    posts.forEach((post) => {
-        const postItem = document.createElement("div");
-        postItem.classList.add("post-card");
-
-        const postTitle = document.createElement("h2");
-        postTitle.textContent = post.title;
-        postTitle.classList.add("post-title");
-        postItem.appendChild(postTitle);
-
-        const postContent = document.createElement("p");
-        postContent.textContent = post.body;
-        postContent.classList.add("post-content");
-        postItem.appendChild(postContent);
-
-        postList.appendChild(postItem);
-    });
+// UIの状態を更新するヘルパー関数
+function showElement(element) {
+    element.style.display = "block";
 }
-fetchPosts();
+function hideElement(element) {
+    element.style.display = "none";
+}
+
+async function fetchAndDisplayUsers() {
+    // --- 1. ローディング状態 ---
+    showElement(loading);
+    hideElement(userList);
+    hideElement(error);
+    hideElement(empty);
+
+    try {
+        const response = await fetch(
+            "https://jsonplaceholder.typicode.com/users",
+        );
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const users = await response.json();
+
+        // --- 2. データ表示 or Empty状態 ---
+        hideElement(loading);
+
+        if (users.length === 0) {
+            // データが空の場合
+            showElement(empty);
+        } else {
+            // データがある場合
+            showElement(userList);
+            users.forEach((user) => {
+                const listItem = document.createElement("li");
+                listItem.textContent = user.name;
+                userList.appendChild(listItem);
+            });
+        }
+    } catch (e) {
+        // --- 3. エラー状態 ---
+        hideElement(loading);
+        showElement(error);
+        console.error("Fetch error:", e);
+    }
+}
+
+// 実行
+fetchAndDisplayUsers();
